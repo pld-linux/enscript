@@ -1,8 +1,9 @@
 Summary:	Converts plain ASCII to PostScript.
+Summary(pl):	Konwertuje czyste ASCII do PostScriptu.
 Name:		enscript
 Version:	1.6.1
 Release:	8
-Copyright:	GNU
+License:	GNU
 Group:		Applications/Publishing
 Group(pl):	Aplikacje/Publikowanie
 Source0:	ftp://ftp.gnu.org/pub/gnu/%{name}-%{version}.tar.gz
@@ -29,7 +30,12 @@ siebie) czy zmiana czcionki.
 %patch -p1
 
 %build
-%configure --with-media=A4 --sysconfdir=%{_sysconfdir}
+gettextize --copy --force
+aclocal
+autoconf
+%configure \
+	--with-media=A4 \
+	--sysconfdir=%{_sysconfdir}
 %{__make}
 
 %install
