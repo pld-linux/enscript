@@ -32,11 +32,11 @@
  	{
  	  strcat (spooler_options, no_job_header_switch);
 @@ -1797,7 +1803,7 @@
-       const char *cp;
+       int i;
  
        c = getopt_long (argc, argv,
--		       "#:12a:A:b:BcC::d:D:e::E::f:F:gGhH::i:I:jJ:kKlL:mM:n:N:o:Op:P:qrRs:S:t:T:u::U:vVW:X:zZ",
-+		       "#:12a:A:b:BcC::d:D:e::E::f:F:gGhH::i:I:jJ:kKlL:m::M:n:N:o:Op:P:qrRs:S:t:T:u::U:vVW:X:zZ",
+-		       "#:123456789a:A:b:BcC::d:D:e::E::f:F:gGhH::i:I:jJ:kKlL:mM:n:N:o:Op:P:qrRs:S:t:T:u::U:vVW:X:zZ",
++		       "#:123456789a:A:b:BcC::d:D:e::E::f:F:gGhH::i:I:jJ:kKlL:m::M:n:N:o:Op:P:qrRs:S:t:T:u::U:vVW:X:zZ",
  		       long_options, &option_index);
  
        if (c == -1)

@@ -1,17 +1,6 @@
---- enscript-1.6.1/compat/Makefile.am~	Thu Dec 13 21:16:15 2001
-+++ enscript-1.6.1/compat/Makefile.am	Thu Dec 13 21:16:15 2001
-@@ -28,8 +28,6 @@
- 
- noinst_LIBRARIES = libcompat.a
- libcompat_a_SOURCES = getopt.c getopt1.c xalloc.c regex.c
--libcompat_a_LIBADD = @LIBOBJS@ @ALLOCA@
--libcompat_a_DEPENDENCIES = @LIBOBJS@ @ALLOCA@
- 
- noinst_HEADERS = dummypwd.h getopt.h regex.h xalloc.h
- 
---- enscript-1.6.1/lib/Makefile.am~	Thu Dec 13 21:20:28 2001
-+++ enscript-1.6.1/lib/Makefile.am	Thu Dec 13 21:20:28 2001
-@@ -37,12 +37,8 @@
+--- enscript-1.6.4/lib/Makefile.am.orig	2003-03-05 08:26:29.000000000 +0100
++++ enscript-1.6.4/lib/Makefile.am	2003-05-09 07:52:40.000000000 +0200
+@@ -38,12 +38,8 @@
  all-local: enscript.cfg
  
  install-data-local: enscript.cfg
@@ -26,35 +15,10 @@
  
  uninstall-local:
  	rm -f $(sysconfdir)/enscript.cfg
---- enscript-1.6.2/states/Makefile.am.orig	Fri Oct 23 15:21:49 1998
-+++ enscript-1.6.2/states/Makefile.am	Wed Mar 20 17:42:32 2002
-@@ -26,19 +26,17 @@
- 
- SUBDIRS = hl tests
- 
--AUTOMAKE_OPTIONS =
--
- bin_PROGRAMS = states
- states_SOURCES = main.c utils.c prims.c process.c gram.y lex.l
- 
--LDADD = ../afmlib/libafm.a @INTLLIBS@ ../compat/libcompat.a @LEXLIB@
--states_DEPENDENCIES = @INTLLIBS@ ../compat/libcompat.a
-+LDADD = ../afmlib/libafm.a $(INTLLIBS) ../compat/libcompat.a $(LEXLIB)
-+states_DEPENDENCIES = $(INTLLIBS) ../compat/libcompat.a
- 
- noinst_HEADERS = defs.h gram.h
- 
- EXTRA_DIST = TODO over.in enscript.el
- 
--localedir = $(prefix)/@DATADIRNAME@/locale
-+localedir = $(datadir)/locale
- 
- bin_SCRIPTS = over
- 
---- enscript-1.6.2/afm/Makefile.am~	Wed Mar 20 17:48:08 2002
-+++ enscript-1.6.2/afm/Makefile.am	Wed Mar 20 17:48:08 2002
-@@ -34,11 +34,11 @@
- EXTRA_DIST = font.map $(default_afm)
+--- enscript-1.6.4/afm/Makefile.am.orig	2003-03-05 08:26:16.000000000 +0100
++++ enscript-1.6.4/afm/Makefile.am	2003-05-09 07:53:56.000000000 +0200
+@@ -36,10 +36,10 @@
+ EXTRA_DIST = font.map $(default_afm) $(public_fonts)
  
  install-data-local:
 -	$(top_srcdir)/mkinstalldirs $(datadir)/enscript
@@ -67,11 +31,9 @@
  	done
  
  uninstall-local:
--	rm -rf $(datadir)/enscript/afm
-+	rm -rf $(DESTDIR)$(datadir)/enscript/afm
---- enscript-1.6.2/states/hl/Makefile.am~	Wed Mar 20 17:53:09 2002
-+++ enscript-1.6.2/states/hl/Makefile.am	Wed Mar 20 17:53:09 2002
-@@ -44,11 +44,11 @@
+--- enscript-1.6.4/states/hl/Makefile.am.orig	2003-03-05 08:26:33.000000000 +0100
++++ enscript-1.6.4/states/hl/Makefile.am	2003-05-09 07:54:20.000000000 +0200
+@@ -45,10 +45,10 @@
  EXTRA_DIST = $(states)
  
  install-data-local:
@@ -85,5 +47,3 @@
  	done
  
  uninstall-local:
--	rm -rf $(datadir)/enscript/hl
-+	rm -rf $(DESTDIR)$(datadir)/enscript/hl
