@@ -4,7 +4,7 @@ Summary(pl):	Konwertuje czyste ASCII do PostScriptu
 Summary(pt_BR):	Converte texto ASCII para postscript
 Name:		enscript
 Version:	1.6.2
-Release:	1
+Release:	2
 License:	GPL
 Group:		Applications/Publishing
 Source0:	ftp://alpha.gnu.org/pub/gnu/%{name}-%{version}.tar.gz
@@ -12,8 +12,9 @@ Patch0:		%{name}-ac_fixes.patch
 Patch1:		%{name}-am_fixes.patch
 Patch2:		%{name}-mail.patch
 Patch3:		%{name}-debian.patch
+Patch4:		%{name}-ac25x.patch
 URL:		http://www.iki.fi/~mtr/genscript/
-BuildRequires:	autoconf
+BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake
 BuildRequires:	gettext-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -47,6 +48,7 @@ página física (lado a lado) ou modificar as fontes do texto.
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
+%patch4 -p1
 
 %build
 rm -rf missing
