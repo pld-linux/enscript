@@ -1,15 +1,14 @@
-Summary: Converts plain ASCII to PostScript.
-Name: enscript
-Version: 1.6.1
-Release: 8
-Copyright: GNU
-Group: Applications/Publishing
-Source0: ftp://ftp.gnu.org/pub/gnu/enscript-1.6.1.tar.gz
-Patch: enscript-1.6.1-config.patch
-URL: http://www.ngs.fi/mtr/genscript/index.html
-Prefix: %{_prefix}
-BuildRoot: /var/tmp/%{name}-root
-Obsoletes: nenscript
+Summary:	Converts plain ASCII to PostScript.
+Name:		enscript
+Version:	1.6.1
+Release:	8
+Copyright:	GNU
+Group:		Applications/Publishing
+Source:		ftp://ftp.gnu.org/pub/gnu/enscript-1.6.1.tar.gz
+Patch:		enscript-1.6.1-config.patch
+URL:		http://www.ngs.fi/mtr/genscript/index.html
+BuildRoot:	/tmp/%{name}-root
+Obsoletes:	nenscript
 
 %description
 Enscript is a print filter. It can take ASCII input
@@ -23,42 +22,37 @@ changing fonts.
 %patch -p1
 
 %build
-#./configure --prefix=/usr --with-media=Letter --sysconfdir=/etc
-#CFLAGS="$RPM_OPT_FLAGS" make
-
-%configure --with-media=Letter --sysconfdir=/etc
+%configure --with-media=A4 --sysconfdir=/etc
 make
 
 %install
 rm -rf $RPM_BUILD_ROOT
-mkdir -p $RPM_BUILD_ROOT/usr/share/locale/{de,es,fi,fr,nl,sl}/LC_MESSAGES
-make DESTDIR=$RPM_BUILD_ROOT install
 
-# XXX note doubled %% in sed script below.
-(cd $RPM_BUILD_ROOT;find .%{_prefix}/share/enscript/*) | \
-	sed -e 's,^\.,,' | sed -e 's,*font.map,%%config &,' > share.list
+make install DESTDIR=$RPM_BUILD_ROOT
 
-{ cd $RPM_BUILD_ROOT
-  strip .%{_prefix}/bin/* || :
-  ln .%{_prefix}/bin/enscript .%{_prefix}/bin/nenscript
-}
+strip --strip-unneeded $RPM_BUILD_ROOT%{_bindir}/* || :
 
+ln -s enscript $RPM_BUILD_ROOT%{_bindir}/nenscript
+
+gzip -9nf $RPM_BUILD_ROOT%{_mandir}/man1/* \
+	AUTHORS ChangeLog NEWS README README.ESCAPES THANKS TODO
+
+%find_lang %{name}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%files -f share.list
-%defattr(-,root,root)
-%{_prefix}/share/locale/*/LC_MESSAGES/enscript.mo
-%{_prefix}/bin/diffpp
-%{_prefix}/bin/sliceprint
-%{_prefix}/bin/enscript
-%{_prefix}/bin/nenscript
-%{_prefix}/bin/mkafmmap
-%{_prefix}/bin/states
-%{_prefix}/bin/over
-
-%{_prefix}/man/man1/*
-%config /etc/enscript.cfg
-
-%doc AUTHORS ChangeLog FAQ.html NEWS README README.ESCAPES THANKS TODO 
+%files -f %{name}.lang
+%defattr(644,root,root,755)
+%doc {AUTHORS,ChangeLog,NEWS,README,README.ESCAPES,THANKS,TODO}.gz FAQ.html
+%config(noreplace) /etc/enscript.cfg
+%attr(755,root,root) %{_bindir}/diffpp
+%attr(755,root,root) %{_bindir}/sliceprint
+%attr(755,root,root) %{_bindir}/enscript
+%attr(755,root,root) %{_bindir}/nenscript
+%attr(755,root,root) %{_bindir}/mkafmmap
+%attr(755,root,root) %{_bindir}/states
+%attr(755,root,root) %{_bindir}/over
+%dir %{_datadir}/enscript
+%{_datadir}/enscript/*
+%{_mandir}/man1/*
