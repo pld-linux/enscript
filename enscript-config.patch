@@ -1,0 +1,76 @@
+--- enscript-1.6.1/lib/Makefile.in.config	Mon Nov  9 15:37:40 1998
++++ enscript-1.6.1/lib/Makefile.in	Mon Nov  9 15:39:04 1998
+@@ -240,15 +240,16 @@
+ all-local: enscript.cfg
+ 
+ install-data-local: enscript.cfg
+-	$(top_srcdir)/mkinstalldirs $(sysconfdir)
+-	if test -r $(sysconfdir)/enscript.cfg; then \
+-	  cp $(sysconfdir)/enscript.cfg $(sysconfdir)/enscript.cfg.old; \
++	$(top_srcdir)/mkinstalldirs $(DESTDIR)$(sysconfdir)
++	if test -r $(DESTDIR)$(sysconfdir)/enscript.cfg; then \
++	  cp $(DESTDIR)$(sysconfdir)/enscript.cfg \
++		$(DESTDIR)$(sysconfdir)/enscript.cfg.old; \
+ 	else :; \
+ 	fi
+-	$(INSTALL_DATA) enscript.cfg $(sysconfdir)/enscript.cfg
++	$(INSTALL_DATA) enscript.cfg $(DESTDIR)$(sysconfdir)/enscript.cfg
+ 
+ uninstall-local:
+-	rm -f $(sysconfdir)/enscript.cfg
++	rm -f $(DESTDIR)$(sysconfdir)/enscript.cfg
+ 
+ enscript.cfg: $(srcdir)/enscript.cfg.in Makefile
+ 	sed 's%@DATADIR@%$(datadir)%g; s%@media@%@MEDIA@%g; s%@BINDIR@%$(bindir)%g; s%@spooler@%@SPOOLER@%g; s%@pslevel@%@PSLEVEL@%g' \
+--- enscript-1.6.1/po/Makefile.in.in.config	Mon Nov  9 15:43:34 1998
++++ enscript-1.6.1/po/Makefile.in.in	Mon Nov  9 15:45:17 1998
+@@ -137,27 +137,27 @@
+ 	  lang=`echo $$cat | sed 's/$(CATOBJEXT)$$//'`; \
+ 	  dir=$$destdir/$$lang/LC_MESSAGES; \
+ 	  if test -r $(MKINSTALLDIRS); then \
+-	    $(MKINSTALLDIRS) $$dir; \
++	    $(MKINSTALLDIRS) $(DESTDIR)$$dir; \
+ 	  else \
+ 	    $(top_srcdir)/mkinstalldirs $$dir; \
+ 	  fi; \
+ 	  if test -r $$cat; then \
+-	    $(INSTALL_DATA) $$cat $$dir/$(PACKAGE)$(INSTOBJEXT); \
+-	    echo "installing $$cat as $$dir/$(PACKAGE)$(INSTOBJEXT)"; \
++	    $(INSTALL_DATA) $$cat $(DESTDIR)$$dir/$(PACKAGE)$(INSTOBJEXT); \
++	    echo "installing $$cat as $(DESTDIR)$$dir/$(PACKAGE)$(INSTOBJEXT)"; \
+ 	  else \
+-	    $(INSTALL_DATA) $(srcdir)/$$cat $$dir/$(PACKAGE)$(INSTOBJEXT); \
++	    $(INSTALL_DATA) $(srcdir)/$$cat $(DESTDIR)$$dir/$(PACKAGE)$(INSTOBJEXT); \
+ 	    echo "installing $(srcdir)/$$cat as" \
+-		 "$$dir/$(PACKAGE)$(INSTOBJEXT)"; \
++		 "$(DESTDIR)$$dir/$(PACKAGE)$(INSTOBJEXT)"; \
+ 	  fi; \
+ 	  if test -r $$cat.m; then \
+-	    $(INSTALL_DATA) $$cat.m $$dir/$(PACKAGE)$(INSTOBJEXT).m; \
+-	    echo "installing $$cat.m as $$dir/$(PACKAGE)$(INSTOBJEXT).m"; \
++	    $(INSTALL_DATA) $$cat.m $(DESTDIR)$$dir/$(PACKAGE)$(INSTOBJEXT).m; \
++	    echo "installing $$cat.m as $(DESTDIR)$$dir/$(PACKAGE)$(INSTOBJEXT).m"; \
+ 	  else \
+ 	    if test -r $(srcdir)/$$cat.m ; then \
+ 	      $(INSTALL_DATA) $(srcdir)/$$cat.m \
+-		$$dir/$(PACKAGE)$(INSTOBJEXT).m; \
++		$(DESTDIR)$$dir/$(PACKAGE)$(INSTOBJEXT).m; \
+ 	      echo "installing $(srcdir)/$$cat as" \
+-		   "$$dir/$(PACKAGE)$(INSTOBJEXT).m"; \
++		   "$(DESTDIR)$$dir/$(PACKAGE)$(INSTOBJEXT).m"; \
+ 	    else \
+ 	      true; \
+ 	    fi; \
+--- enscript-1.6.1/states/Makefile.in.config	Mon Nov  9 15:46:55 1998
++++ enscript-1.6.1/states/Makefile.in	Mon Nov  9 15:47:17 1998
+@@ -493,8 +493,8 @@
+ 	$(srcdir)/over.in > over
+ 
+ install-data-local: enscript.st
+-	$(top_srcdir)/mkinstalldirs $(datadir)/enscript
+-	$(INSTALL_DATA) $(srcdir)/enscript.st $(datadir)/enscript/enscript.st
++	$(top_srcdir)/mkinstalldirs $(DESTDIR)$(datadir)/enscript
++	$(INSTALL_DATA) $(srcdir)/enscript.st $(DESTDIR)$(datadir)/enscript/enscript.st
+ 
+ uninstall-local:
+ 	rm -f $(datadir)/enscript/enscript.st
