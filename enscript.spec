@@ -7,13 +7,13 @@ Version:	1.6.3
 Release:	1
 License:	GPL
 Group:		Applications/Publishing
-Source0:	ftp://alpha.gnu.org/pub/gnu/%{name}/%{name}-%{version}.tar.gz
+Source0:	http://www.iki.fi/mtr/genscript/%{name}-%{version}.tar.gz
 Patch0:		%{name}-ac_fixes.patch
 Patch1:		%{name}-am_fixes.patch
 Patch2:		%{name}-mail.patch
 Patch3:		%{name}-debian.patch
 Patch4:		%{name}-ac25x.patch
-URL:		http://www.iki.fi/~mtr/genscript/
+URL:		http://www.iki.fi/mtr/genscript/
 BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake
 BuildRequires:	gettext-devel
