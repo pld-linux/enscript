@@ -1,0 +1,141 @@
+--- enscript-1.6.2.orig/compat/regex.c
++++ enscript-1.6.2/compat/regex.c
+@@ -2400,11 +2400,13 @@
+             case ')':
+               if (syntax & RE_NO_BK_PARENS) goto normal_backslash;
+ 
+-              if (COMPILE_STACK_EMPTY)
+-                if (syntax & RE_UNMATCHED_RIGHT_PAREN_ORD)
++              if (COMPILE_STACK_EMPTY) {
++                if (syntax & RE_UNMATCHED_RIGHT_PAREN_ORD) {
+                   goto normal_backslash;
+-                else
++		} else {
+                   FREE_STACK_RETURN (REG_ERPAREN);
++		}  
++	      }	
+ 
+             handle_close:
+               if (fixup_alt_jump)
+@@ -2420,11 +2422,13 @@
+                 }
+ 
+               /* See similar code for backslashed left paren above.  */
+-              if (COMPILE_STACK_EMPTY)
+-                if (syntax & RE_UNMATCHED_RIGHT_PAREN_ORD)
++              if (COMPILE_STACK_EMPTY) {
++                if (syntax & RE_UNMATCHED_RIGHT_PAREN_ORD) {
+                   goto normal_char;
+-                else
++		} else {
+                   FREE_STACK_RETURN (REG_ERPAREN);
++		}
++	      }	
+ 
+               /* Since we just checked for an empty stack above, this
+                  ``can't happen''.  */
+--- enscript-1.6.2.orig/lib/enscript.cfg.in
++++ enscript-1.6.2/lib/enscript.cfg.in
+@@ -48,7 +48,7 @@
+ DefaultFancyHeader: enscript
+ 
+ # Default output media.
+-DefaultMedia: @media@
++# DefaultMedia: @media@
+ 
+ # Where output goes as a default: `printer' or `stdout'
+ DefaultOutputMethod: printer
+@@ -86,11 +86,11 @@
+ 
+ # Media definitions:
+ #	name		width	height	llx	lly	urx	ury
+-Media:	A3		842	1190	24	24	818	1166
+-Media:	A4		595	842	24	24	571	818
+-Media:	A5		420	595	24	24	396	571
+-Media:	Legal		612	1008	24	24	588	984
+-Media:  Letter		612	792	38	24	574	768
++Media:	a3		842	1190	24	24	818	1166
++Media:	a4		595	842	24	24	571	818
++Media:	a5		420	595	24	24	396	571
++Media:	legal		612	1008	24	24	588	984
++Media:  letter		612	792	38	24	574	768
+ 
+ # HP DeskJet media (DeskJet can't print on the bottom 1/2" of the paper).
+ Media:	A4dj		595	842	24	50	571	818
+--- enscript-1.6.2.orig/src/psgen.c
++++ enscript-1.6.2/src/psgen.c
+@@ -2472,7 +2472,7 @@
+ read_float (InputStream *is, int units, int horizontal)
+ {
+   char buf[256];
+-  int i, ch;
++  int i, ch = 0;
+   double val;
+ 
+   for (i = 0; (i < sizeof (buf) - 1
+@@ -2696,31 +2696,15 @@
+ static void
+ divert ()
+ {
+-  char *cp;
+-
+   assert (divertfp == NULL);
+ 
+   /* Open divert file. */
+ 
+-  cp = tempnam (NULL, "ens");
+-  if (cp == NULL)
+-    FATAL ((stderr, _("couldn't create divert file name: %s"),
+-	    strerror (errno)));
+-
+-  strcpy (divertfname, cp);
+-
+-  divertfp = fopen (divertfname, "w+b");
++  divertfp = tmpfile ();
+   if (divertfp == NULL)
+     FATAL ((stderr, _("couldn't create divert file \"%s\": %s"), divertfname,
+ 	    strerror (errno)));
+ 
+-  if (remove (divertfname) == 0)
+-    /* Remove successfull, no need to remove file in undivert(). */
+-    divertfname[0] = '\0';
+-
+-  /* Free the buffer allocated by tempnam(). */
+-  free (cp);
+-
+   cofp = divertfp;
+ }
+ 
+@@ -2774,10 +2758,6 @@
+ 
+   fclose (divertfp);
+   divertfp = NULL;
+-
+-  /* Do we have to remove the divert file? */
+-  if (divertfname[0])
+-    (void) remove (divertfname);
+ 
+   cofp = ofp;
+ }
+--- enscript-1.6.2.orig/tests/Makefile.in
++++ enscript-1.6.2/tests/Makefile.in
+@@ -131,7 +131,7 @@
+ EXTRA_DIST = defs $(TESTS)
+ mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
+ CONFIG_HEADER = ../config.h
+-CONFIG_CLEAN_FILES = 
++CONFIG_CLEAN_FILES = testout.ps
+ DIST_COMMON =  ChangeLog Makefile.am Makefile.in
+ 
+ 
+--- enscript-1.6.2.orig/docs/Makefile.in
++++ enscript-1.6.2/docs/Makefile.in
+@@ -280,7 +280,7 @@
+ 	  enscript.fns enscript.ky enscript.kys enscript.ps \
+ 	  enscript.log enscript.pg enscript.toc enscript.tp \
+ 	  enscript.tps enscript.vr enscript.vrs enscript.op enscript.tr \
+-	  enscript.cv enscript.cn
++	  enscript.cv enscript.cn enscript.1 states.1
+ 
+ clean-aminfo:
+ 
