@@ -8,6 +8,7 @@ Release:	0.9
 License:	GPL
 Group:		Applications/Publishing
 Source0:	http://www.iki.fi/mtr/genscript/%{name}-%{version}.tar.gz
+# Source0-md5: b5174b59e4a050fb462af5dbf28ebba3
 Patch0:		%{name}-ac_fixes.patch
 Patch1:		%{name}-am_fixes.patch
 Patch2:		%{name}-mail.patch
