@@ -52,7 +52,7 @@ página física (lado a lado) ou modificar as fontes do texto.
 
 %build
 rm -rf missing
-gettextize --copy --force
+%{__gettextize}
 aclocal
 autoheader
 %{__autoconf}
