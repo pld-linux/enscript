@@ -1,0 +1,60 @@
+--- enscript-1.6.1/compat/Makefile.am~	Thu Dec 13 21:16:15 2001
++++ enscript-1.6.1/compat/Makefile.am	Thu Dec 13 21:16:15 2001
+@@ -28,8 +28,6 @@
+ 
+ noinst_LIBRARIES = libcompat.a
+ libcompat_a_SOURCES = getopt.c getopt1.c xalloc.c regex.c
+-libcompat_a_LIBADD = @LIBOBJS@ @ALLOCA@
+-libcompat_a_DEPENDENCIES = @LIBOBJS@ @ALLOCA@
+ 
+ noinst_HEADERS = dummypwd.h getopt.h regex.h xalloc.h
+ 
+--- enscript-1.6.1/lib/Makefile.am~	Thu Dec 13 21:20:28 2001
++++ enscript-1.6.1/lib/Makefile.am	Thu Dec 13 21:20:28 2001
+@@ -37,12 +37,8 @@
+ all-local: enscript.cfg
+ 
+ install-data-local: enscript.cfg
+-	$(top_srcdir)/mkinstalldirs $(sysconfdir)
+-	if test -r $(sysconfdir)/enscript.cfg; then \
+-	  cp $(sysconfdir)/enscript.cfg $(sysconfdir)/enscript.cfg.old; \
+-	else :; \
+-	fi
+-	$(INSTALL_DATA) enscript.cfg $(sysconfdir)/enscript.cfg
++	$(top_srcdir)/mkinstalldirs $(DESTDIR)$(sysconfdir)
++	$(INSTALL_DATA) enscript.cfg $(DESTDIR)$(sysconfdir)/enscript.cfg
+ 
+ uninstall-local:
+ 	rm -f $(sysconfdir)/enscript.cfg
+--- enscript-1.6.1/states/Makefile.am~	Thu Dec 13 23:09:11 2001
++++ enscript-1.6.1/states/Makefile.am	Thu Dec 13 23:09:11 2001
+@@ -33,14 +33,14 @@
+ bin_PROGRAMS = states
+ states_SOURCES = main.c utils.c prims.c process.c gram.y lex.l
+ 
+-LDADD = ../afmlib/libafm.a @INTLLIBS@ ../compat/libcompat.a @LEXLIB@
+-states_DEPENDENCIES = @INTLLIBS@ ../compat/libcompat.a
++LDADD = ../afmlib/libafm.a $(INTLLIBS) ../compat/libcompat.a $(LEXLIB)
++states_DEPENDENCIES = $(INTLLIBS) ../compat/libcompat.a
+ 
+ noinst_HEADERS = defs.h gram.h
+ 
+ EXTRA_DIST = states.1.in TODO enscript.st over.in enscript.el
+ 
+-localedir = $(prefix)/@DATADIRNAME@/locale
++localedir = $(datadir)/locale
+ 
+ bin_SCRIPTS = over
+ 
+@@ -53,9 +53,5 @@
+ DEFS = @DEFS@ -DLOCALEDIR=\"$(localedir)\" -I. -I$(srcdir) -I..
+ INCLUDES = -I$(srcdir)/../compat -I$(srcdir)/../afmlib -I$(srcdir)/../intl -I../intl
+ 
+-install-data-local: enscript.st
+-	$(top_srcdir)/mkinstalldirs $(datadir)/enscript
+-	$(INSTALL_DATA) $(srcdir)/enscript.st $(datadir)/enscript/enscript.st
+-
+-uninstall-local:
+-	rm -f $(datadir)/enscript/enscript.st
++stdir = $(pkgdatadir)
++st_DATA = enscript.st
