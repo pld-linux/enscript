@@ -7,10 +7,6 @@ Version:	1.6.1
 Release:	15
 License:	GPL
 Group:		Applications/Publishing
-Group(de):	Applikationen/Publizieren
-Group(es):	Aplicaciones/Editoración
-Group(pl):	Aplikacje/Publikowanie
-Group(pt_BR):	Aplicações/Editoração
 Source0:	ftp://ftp.gnu.org/pub/gnu/%{name}-%{version}.tar.gz
 Patch0:		%{name}-config.patch
 Patch1:		%{name}-ac_fixes.patch
