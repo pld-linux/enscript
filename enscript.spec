@@ -17,6 +17,12 @@ it can also do nice transformations like putting two
 ASCII pages on one physical page (side by side) or
 changing fonts.
 
+%description
+Enscript jest filtrem wykorzystywanym przy drukowaniu. Na wej¶ciu przyjmuje
+dane ASCII i konwertuje je na PostScript. Potrafi równocze¶nie dokonaæ
+pewnych u¿ytecznych przekszta³ceñ, jak np. umieszczenie dwóch stron ASCII
+na jednej stronie fizycznej (obok siebie) czy zmiana czcionki.
+
 %prep
 %setup -q
 %patch -p1
