@@ -18,8 +18,9 @@ URL:		http://www.iki.fi/mtr/genscript/
 BuildRequires:	autoconf >= 2.57
 BuildRequires:	automake
 BuildRequires:	gettext-devel
-BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+BuildRequires:	texinfo
 Obsoletes:	nenscript
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 Enscript is a print filter. It can take ASCII input and format it into
