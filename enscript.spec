@@ -7,7 +7,7 @@ Group:		Applications/Publishing
 Source:		ftp://ftp.gnu.org/pub/gnu/enscript-1.6.1.tar.gz
 Patch:		enscript-1.6.1-config.patch
 URL:		http://www.ngs.fi/mtr/genscript/index.html
-BuildRoot:	/tmp/%{name}-root
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	nenscript
 
 %description
