@@ -11,7 +11,8 @@ Group(pl):	Aplikacje/Publikowanie
 Group(pt_BR):	Aplicações/Editoração
 Source0:	ftp://ftp.gnu.org/pub/gnu/%{name}-%{version}.tar.gz
 Patch0:		%{name}-1.6.1-config.patch
-URL:		http://www.ngs.fi/mtr/genscript/index.html
+Patch1:		%{name}-ac_fix.patch
+URL:		http://www.iki.fi/~mtr/genscript/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	gettext-devel
@@ -33,12 +34,15 @@ siebie) czy zmiana czcionki.
 
 %prep
 %setup -q
-%patch -p1
+%patch0 -p1
+%patch1 -p1
 
 %build
+rm -rf missing
 gettextize --copy --force
 aclocal
 autoconf
+automake -a -c
 %configure \
 	--with-media=A4 \
 	--sysconfdir=%{_sysconfdir}
@@ -60,7 +64,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
-%doc {AUTHORS,ChangeLog,NEWS,README,README.ESCAPES,THANKS,TODO}.gz FAQ.html
+%doc *.gz FAQ.html
 %config(noreplace) %{_sysconfdir}/enscript.cfg
 %attr(755,root,root) %{_bindir}/diffpp
 %attr(755,root,root) %{_bindir}/sliceprint
