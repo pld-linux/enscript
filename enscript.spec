@@ -2,8 +2,8 @@ Summary:	Converts plain ASCII to PostScript
 Summary(pl):	Konwertuje czyste ASCII do PostScriptu
 Name:		enscript
 Version:	1.6.1
-Release:	8
-License:	GNU
+Release:	9
+License:	GPL
 Group:		Applications/Publishing
 Group(de):	Applikationen/Publizieren
 Group(es):	Aplicaciones/Editoración
@@ -24,7 +24,7 @@ PostScript output. At the same time, it can also do nice
 transformations like putting two ASCII pages on one physical page
 (side by side) or changing fonts.
 
-%description
+%description -l pl
 Enscript jest filtrem wykorzystywanym przy drukowaniu. Na wej¶ciu
 przyjmuje dane ASCII i konwertuje je na PostScript. Potrafi
 równocze¶nie dokonaæ pewnych u¿ytecznych przekszta³ceñ, jak np.
