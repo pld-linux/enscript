@@ -53,8 +53,8 @@ página física (lado a lado) ou modificar as fontes do texto.
 %build
 rm -rf missing
 %{__gettextize}
-aclocal
-autoheader
+%{__aclocal}
+%{__autoheader}
 %{__autoconf}
 %{__automake}
 %configure \
