@@ -37,8 +37,6 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__make} install DESTDIR=$RPM_BUILD_ROOT
 
-strip --strip-unneeded $RPM_BUILD_ROOT%{_bindir}/* || :
-
 ln -s enscript $RPM_BUILD_ROOT%{_bindir}/nenscript
 
 gzip -9nf $RPM_BUILD_ROOT%{_mandir}/man1/* \
