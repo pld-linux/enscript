@@ -4,7 +4,7 @@ Summary(pl):	Konwertuje czyste ASCII do PostScriptu
 Summary(pt_BR):	Converte texto ASCII para postscript
 Name:		enscript
 Version:	1.6.4
-Release:	0.9
+Release:	1
 License:	GPL
 Group:		Applications/Publishing
 Source0:	http://www.iki.fi/mtr/genscript/%{name}-%{version}.tar.gz
@@ -52,7 +52,6 @@ página física (lado a lado) ou modificar as fontes do texto.
 %patch4 -p1
 
 %build
-rm -rf missing
 %{__gettextize}
 %{__aclocal}
 %{__autoheader}
