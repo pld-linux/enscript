@@ -30,7 +30,7 @@ siebie) czy zmiana czcionki.
 
 %build
 %configure --with-media=A4 --sysconfdir=%{_sysconfdir}
-make
+%{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
