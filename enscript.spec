@@ -5,9 +5,12 @@ Version:	1.6.1
 Release:	8
 License:	GNU
 Group:		Applications/Publishing
+Group(de):	Applikationen/Publizieren
+Group(es):	Aplicaciones/Editoración
 Group(pl):	Aplikacje/Publikowanie
+Group(pt_BR):	Aplicações/Editoração
 Source0:	ftp://ftp.gnu.org/pub/gnu/%{name}-%{version}.tar.gz
-Patch0:		enscript-1.6.1-config.patch
+Patch0:		%{name}-1.6.1-config.patch
 URL:		http://www.ngs.fi/mtr/genscript/index.html
 BuildRequires:	autoconf
 BuildRequires:	automake
