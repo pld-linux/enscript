@@ -1,5 +1,5 @@
---- ./configure.in.org	Thu Jun 25 08:37:22 1998
-+++ ./configure.in	Wed Dec 12 22:51:10 2001
+--- enscript-1.6.2/configure.in.orig	Tue Dec  8 07:57:44 1998
++++ enscript-1.6.2/configure.in	Wed Mar 20 17:39:38 2002
 @@ -8,25 +8,9 @@
  
  AC_REVISION($Revision$)
@@ -28,7 +28,7 @@
  
  AC_ISC_POSIX
  AM_C_PROTOTYPES
-@@ -69,14 +53,6 @@
+@@ -74,14 +58,6 @@
  AC_PROG_YACC
  AM_PROG_LEX
  
@@ -43,16 +43,14 @@
  dnl Define the default output media.
  
  AC_ARG_WITH(media,
-@@ -140,12 +116,6 @@
+@@ -147,10 +123,6 @@
  
- AC_PATH_PROG(PERL, perl)
+ dnl substitutions
  
--dnl substitutions
--
 -AC_SUBST(CFLAGS)
 -AC_SUBST(LDFLAGS)
 -AC_SUBST(LIBOBJS)
 -
- AC_OUTPUT([Makefile enscript.1 compat/Makefile afm/Makefile afmlib/Makefile src/Makefile lib/Makefile scripts/Makefile intl/Makefile po/Makefile.in states/Makefile states/states.1 states/tests/Makefile tests/Makefile], [sed -e "/POTFILES =/r po/POTFILES" po/Makefile.in >po/Makefile])
- 
- echo ""
+ AC_OUTPUT([Makefile \
+ 	compat/Makefile \
+ 	afm/Makefile \

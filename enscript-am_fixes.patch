@@ -26,9 +26,14 @@
  
  uninstall-local:
  	rm -f $(sysconfdir)/enscript.cfg
---- enscript-1.6.1/states/Makefile.am~	Thu Dec 13 23:09:11 2001
-+++ enscript-1.6.1/states/Makefile.am	Thu Dec 13 23:09:11 2001
-@@ -33,14 +33,14 @@
+--- enscript-1.6.2/states/Makefile.am.orig	Fri Oct 23 15:21:49 1998
++++ enscript-1.6.2/states/Makefile.am	Wed Mar 20 17:42:32 2002
+@@ -26,19 +26,17 @@
+ 
+ SUBDIRS = hl tests
+ 
+-AUTOMAKE_OPTIONS =
+-
  bin_PROGRAMS = states
  states_SOURCES = main.c utils.c prims.c process.c gram.y lex.l
  
@@ -39,22 +44,46 @@
  
  noinst_HEADERS = defs.h gram.h
  
- EXTRA_DIST = states.1.in TODO enscript.st over.in enscript.el
+ EXTRA_DIST = TODO over.in enscript.el
  
 -localedir = $(prefix)/@DATADIRNAME@/locale
 +localedir = $(datadir)/locale
  
  bin_SCRIPTS = over
  
-@@ -53,9 +53,5 @@
- DEFS = @DEFS@ -DLOCALEDIR=\"$(localedir)\" -I. -I$(srcdir) -I..
- INCLUDES = -I$(srcdir)/../compat -I$(srcdir)/../afmlib -I$(srcdir)/../intl -I../intl
+--- enscript-1.6.2/afm/Makefile.am~	Wed Mar 20 17:48:08 2002
++++ enscript-1.6.2/afm/Makefile.am	Wed Mar 20 17:48:08 2002
+@@ -34,11 +34,11 @@
+ EXTRA_DIST = font.map $(default_afm)
  
--install-data-local: enscript.st
+ install-data-local:
 -	$(top_srcdir)/mkinstalldirs $(datadir)/enscript
--	$(INSTALL_DATA) $(srcdir)/enscript.st $(datadir)/enscript/enscript.st
--
--uninstall-local:
--	rm -f $(datadir)/enscript/enscript.st
-+stdir = $(pkgdatadir)
-+st_DATA = enscript.st
+-	$(top_srcdir)/mkinstalldirs $(datadir)/enscript/afm
++	$(top_srcdir)/mkinstalldirs $(DESTDIR)$(datadir)/enscript
++	$(top_srcdir)/mkinstalldirs $(DESTDIR)$(datadir)/enscript/afm
+ 	for f in $(EXTRA_DIST); do \
+-	  $(INSTALL_DATA) $(srcdir)/$$f $(datadir)/enscript/afm/$$f; \
++	  $(INSTALL_DATA) $(srcdir)/$$f $(DESTDIR)$(datadir)/enscript/afm/$$f; \
+ 	done
+ 
+ uninstall-local:
+-	rm -rf $(datadir)/enscript/afm
++	rm -rf $(DESTDIR)$(datadir)/enscript/afm
+--- enscript-1.6.2/states/hl/Makefile.am~	Wed Mar 20 17:53:09 2002
++++ enscript-1.6.2/states/hl/Makefile.am	Wed Mar 20 17:53:09 2002
+@@ -44,11 +44,11 @@
+ EXTRA_DIST = $(states)
+ 
+ install-data-local:
+-	$(top_srcdir)/mkinstalldirs $(datadir)/enscript
+-	$(top_srcdir)/mkinstalldirs $(datadir)/enscript/hl
++	$(top_srcdir)/mkinstalldirs $(DESTDIR)$(datadir)/enscript
++	$(top_srcdir)/mkinstalldirs $(DESTDIR)$(datadir)/enscript/hl
+ 	for f in $(states); do \
+-	  $(INSTALL_DATA) $(srcdir)/$$f $(datadir)/enscript/hl/$$f; \
++	  $(INSTALL_DATA) $(srcdir)/$$f $(DESTDIR)$(datadir)/enscript/hl/$$f; \
+ 	done
+ 
+ uninstall-local:
+-	rm -rf $(datadir)/enscript/hl
++	rm -rf $(DESTDIR)$(datadir)/enscript/hl
