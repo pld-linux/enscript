@@ -55,8 +55,8 @@ rm -rf missing
 gettextize --copy --force
 aclocal
 autoheader
-autoconf
-automake -a -c -f
+%{__autoconf}
+%{__automake}
 %configure \
 	--with-media=A4 \
 	--sysconfdir=%{_sysconfdir}
