@@ -1,0 +1,14 @@
+--- enscript-1.6.4/docs/enscript.texi.orig	2003-03-05 08:26:18.000000000 +0100
++++ enscript-1.6.4/docs/enscript.texi	2003-05-09 08:13:39.000000000 +0200
+@@ -7,9 +7,9 @@
+ 
+ @include version.texi
+ 
+-@dircategory Utilities
++@dircategory Text Processing Tools:
+ @direntry
+-* Enscript: (enscript).		    GNU Enscript
++* Enscript: (enscript).			GNU Enscript
+ @end direntry
+ 
+ @c Combine function and variable indexes to the Concept index.
