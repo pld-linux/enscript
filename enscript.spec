@@ -69,8 +69,6 @@ rm -rf $RPM_BUILD_ROOT
 
 ln -sf enscript $RPM_BUILD_ROOT%{_bindir}/nenscript
 
-gzip -9nf AUTHORS ChangeLog NEWS README README.ESCAPES THANKS TODO
-
 %find_lang %{name}
 
 %clean
@@ -78,7 +76,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
-%doc *.gz FAQ.html
+%doc AUTHORS ChangeLog NEWS README README.ESCAPES THANKS TODO FAQ.html
 %config(noreplace) %{_sysconfdir}/enscript.cfg
 %attr(755,root,root) %{_bindir}/diffpp
 %attr(755,root,root) %{_bindir}/sliceprint
