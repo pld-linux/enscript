@@ -1,5 +1,5 @@
-Summary:	Converts plain ASCII to PostScript.
-Summary(pl):	Konwertuje czyste ASCII do PostScriptu.
+Summary:	Converts plain ASCII to PostScript
+Summary(pl):	Konwertuje czyste ASCII do PostScriptu
 Name:		enscript
 Version:	1.6.1
 Release:	8
@@ -9,6 +9,9 @@ Group(pl):	Aplikacje/Publikowanie
 Source0:	ftp://ftp.gnu.org/pub/gnu/%{name}-%{version}.tar.gz
 Patch0:		enscript-1.6.1-config.patch
 URL:		http://www.ngs.fi/mtr/genscript/index.html
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	gettext-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	nenscript
 
@@ -43,10 +46,9 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__make} install DESTDIR=$RPM_BUILD_ROOT
 
-ln -s enscript $RPM_BUILD_ROOT%{_bindir}/nenscript
+ln -sf enscript $RPM_BUILD_ROOT%{_bindir}/nenscript
 
-gzip -9nf $RPM_BUILD_ROOT%{_mandir}/man1/* \
-	AUTHORS ChangeLog NEWS README README.ESCAPES THANKS TODO
+gzip -9nf AUTHORS ChangeLog NEWS README README.ESCAPES THANKS TODO
 
 %find_lang %{name}
 
