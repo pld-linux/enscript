@@ -1,3 +1,6 @@
+# TODO
+# - ruby hiliting from http://neugierig.org/software/ruby/
+# - php hiliting from http://home.raxnet.net/article_viewcvs_php.php
 Summary:	Converts plain ASCII to PostScript
 Summary(es):	Convierte texto ASCII a postscript
 Summary(pl):	Konwertuje czyste ASCII do PostScriptu
