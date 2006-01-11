@@ -1,13 +1,12 @@
 # TODO
 # - ruby hiliting from http://neugierig.org/software/ruby/
-# - php hiliting from http://home.raxnet.net/article_viewcvs_php.php
 Summary:	Converts plain ASCII to PostScript
 Summary(es):	Convierte texto ASCII a postscript
 Summary(pl):	Konwertuje czyste ASCII do PostScriptu
 Summary(pt_BR):	Converte texto ASCII para postscript
 Name:		enscript
 Version:	1.6.4
-Release:	1
+Release:	2
 License:	GPL
 Group:		Applications/Publishing
 Source0:	http://www.iki.fi/mtr/genscript/%{name}-%{version}.tar.gz
@@ -17,6 +16,7 @@ Patch1:		%{name}-am_fixes.patch
 Patch2:		%{name}-mail.patch
 Patch3:		%{name}-debian.patch
 Patch4:		%{name}-info.patch
+Patch5:		%{name}-php.patch
 URL:		http://www.iki.fi/mtr/genscript/
 BuildRequires:	autoconf >= 2.57
 BuildRequires:	automake
@@ -54,6 +54,7 @@ página física (lado a lado) ou modificar as fontes do texto.
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
+%patch5 -p1
 
 %build
 %{__gettextize}
@@ -75,6 +76,7 @@ rm -rf $RPM_BUILD_ROOT
 ln -sf enscript $RPM_BUILD_ROOT%{_bindir}/nenscript
 
 %find_lang %{name}
+rm -f $RPM_BUILD_ROOT%{_datadir}/info/dir
 
 %clean
 rm -rf $RPM_BUILD_ROOT
