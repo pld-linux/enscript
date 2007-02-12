@@ -1,9 +1,9 @@
 # TODO
 # - ruby hiliting from http://neugierig.org/software/ruby/
 Summary:	Converts plain ASCII to PostScript
-Summary(es):	Convierte texto ASCII a postscript
-Summary(pl):	Konwertuje czyste ASCII do PostScriptu
-Summary(pt_BR):	Converte texto ASCII para postscript
+Summary(es.UTF-8):   Convierte texto ASCII a postscript
+Summary(pl.UTF-8):   Konwertuje czyste ASCII do PostScriptu
+Summary(pt_BR.UTF-8):   Converte texto ASCII para postscript
 Name:		enscript
 Version:	1.6.4
 Release:	2
@@ -31,21 +31,21 @@ PostScript output. At the same time, it can also do nice
 transformations like putting two ASCII pages on one physical page
 (side by side) or changing fonts.
 
-%description -l es
+%description -l es.UTF-8
 Convierte texto ASCII a postscript.
 
-%description -l pl
-Enscript jest filtrem wykorzystywanym przy drukowaniu. Na wej∂ciu
+%description -l pl.UTF-8
+Enscript jest filtrem wykorzystywanym przy drukowaniu. Na wej≈õciu
 przyjmuje dane ASCII i konwertuje je na PostScript. Potrafi
-rÛwnocze∂nie dokonaÊ pewnych uøytecznych przekszta≥ceÒ, jak np.
-umieszczenie dwÛch stron ASCII na jednej stronie fizycznej (obok
+r√≥wnocze≈õnie dokonaƒá pewnych u≈ºytecznych przekszta≈Çce≈Ñ, jak np.
+umieszczenie dw√≥ch stron ASCII na jednej stronie fizycznej (obok
 siebie) czy zmiana czcionki.
 
-%description -l pt_BR
-O enscript È um filtro de impress„o. Ele pega texto ascii e o formata
-em postscript. AlÈm disto, ele pode tambÈm fazer v·rias
-transformaÁıes, como por exemplo colocar duas p·ginas ascii em uma
-p·gina fÌsica (lado a lado) ou modificar as fontes do texto.
+%description -l pt_BR.UTF-8
+O enscript √© um filtro de impress√£o. Ele pega texto ascii e o formata
+em postscript. Al√©m disto, ele pode tamb√©m fazer v√°rias
+transforma√ß√µes, como por exemplo colocar duas p√°ginas ascii em uma
+p√°gina f√≠sica (lado a lado) ou modificar as fontes do texto.
 
 %prep
 %setup -q
