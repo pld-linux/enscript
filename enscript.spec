@@ -1,9 +1,9 @@
 # TODO
 # - ruby hiliting from http://neugierig.org/software/ruby/
 Summary:	Converts plain ASCII to PostScript
-Summary(es.UTF-8):   Convierte texto ASCII a postscript
-Summary(pl.UTF-8):   Konwertuje czyste ASCII do PostScriptu
-Summary(pt_BR.UTF-8):   Converte texto ASCII para postscript
+Summary(es.UTF-8):	Convierte texto ASCII a postscript
+Summary(pl.UTF-8):	Konwertuje czyste ASCII do PostScriptu
+Summary(pt_BR.UTF-8):	Converte texto ASCII para postscript
 Name:		enscript
 Version:	1.6.4
 Release:	2
