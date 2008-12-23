@@ -18,6 +18,11 @@ Patch3:		%{name}-debian.patch
 Patch4:		%{name}-info.patch
 Patch5:		%{name}-php.patch
 URL:		http://www.iki.fi/mtr/genscript/
+# patches from RH packages:
+# http://securitytracker.com/alerts/2008/Dec/1021405.html
+BuildRequires:	security(CVE-2008-3863)
+BuildRequires:	security(CVE-2008-4306)
+BuildRequires:	security(CVE-2008-5078)
 BuildRequires:	autoconf >= 2.57
 BuildRequires:	automake
 BuildRequires:	gettext-devel
