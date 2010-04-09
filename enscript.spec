@@ -1,31 +1,25 @@
 # TODO
 # - ruby hiliting from http://neugierig.org/software/ruby/
+# - reexamine CVE-2008-5078 (no longer applicable?)
 Summary:	Converts plain ASCII to PostScript
 Summary(es.UTF-8):	Convierte texto ASCII a postscript
 Summary(pl.UTF-8):	Konwertuje czyste ASCII do PostScriptu
 Summary(pt_BR.UTF-8):	Converte texto ASCII para postscript
 Name:		enscript
-Version:	1.6.4
-Release:	3
-License:	GPL
+Version:	1.6.5.1
+Release:	1
+License:	GPL v3+
 Group:		Applications/Publishing
-Source0:	http://www.iki.fi/mtr/genscript/%{name}-%{version}.tar.gz
-# Source0-md5:	b5174b59e4a050fb462af5dbf28ebba3
-Patch0:		%{name}-ac_fixes.patch
-Patch1:		%{name}-am_fixes.patch
-Patch2:		%{name}-mail.patch
-Patch3:		%{name}-debian.patch
-Patch4:		%{name}-info.patch
-Patch5:		%{name}-php.patch
-URL:		http://www.iki.fi/mtr/genscript/
-# patches from RH packages:
-# http://securitytracker.com/alerts/2008/Dec/1021405.html
-BuildRequires:	security(CVE-2008-3863)
-BuildRequires:	security(CVE-2008-4306)
-BuildRequires:	security(CVE-2008-5078)
-BuildRequires:	autoconf >= 2.57
+Source0:	http://ftp.gnu.org/gnu/enscript/%{name}-%{version}.tar.gz
+# Source0-md5:	2d9568800bfa2831c82b6e216adaad78
+Patch0:		%{name}-mail.patch
+Patch1:		%{name}-debian.patch
+Patch2:		%{name}-info.patch
+Patch3:		%{name}-php.patch
+URL:		http://www.gnu.org/software/enscript/
+BuildRequires:	autoconf >= 2.61
 BuildRequires:	automake
-BuildRequires:	gettext-devel
+BuildRequires:	gettext-devel >= 0.17
 BuildRequires:	texinfo
 Obsoletes:	nenscript
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -58,8 +52,6 @@ página física (lado a lado) ou modificar as fontes do texto.
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
-%patch4 -p1
-%patch5 -p1
 
 %build
 %{__gettextize}
@@ -86,10 +78,10 @@ rm -f $RPM_BUILD_ROOT%{_datadir}/info/dir
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post	-p	/sbin/postshell
+%post	-p /sbin/postshell
 -/usr/sbin/fix-info-dir -c %{_infodir}
 
-%postun	-p	/sbin/postshell
+%postun	-p /sbin/postshell
 -/usr/sbin/fix-info-dir -c %{_infodir}
 
 %files -f %{name}.lang
@@ -97,12 +89,15 @@ rm -rf $RPM_BUILD_ROOT
 %doc AUTHORS ChangeLog NEWS README README.ESCAPES THANKS TODO docs/FAQ.html
 %config(noreplace) %{_sysconfdir}/enscript.cfg
 %attr(755,root,root) %{_bindir}/diffpp
-%attr(755,root,root) %{_bindir}/sliceprint
 %attr(755,root,root) %{_bindir}/enscript
-%attr(755,root,root) %{_bindir}/nenscript
 %attr(755,root,root) %{_bindir}/mkafmmap
-%attr(755,root,root) %{_bindir}/states
+%attr(755,root,root) %{_bindir}/nenscript
 %attr(755,root,root) %{_bindir}/over
+%attr(755,root,root) %{_bindir}/sliceprint
+%attr(755,root,root) %{_bindir}/states
 %{_datadir}/enscript
-%{_mandir}/man1/*
-%{_infodir}/*.info*
+%{_mandir}/man1/diffpp.1*
+%{_mandir}/man1/enscript.1*
+%{_mandir}/man1/sliceprint.1*
+%{_mandir}/man1/states.1*
+%{_infodir}/enscript.info*
