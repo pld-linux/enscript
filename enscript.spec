@@ -6,16 +6,17 @@ Summary(es.UTF-8):	Convierte texto ASCII a postscript
 Summary(pl.UTF-8):	Konwertuje czyste ASCII do PostScriptu
 Summary(pt_BR.UTF-8):	Converte texto ASCII para postscript
 Name:		enscript
-Version:	1.6.5.2
+Version:	1.6.6
 Release:	1
 License:	GPL v3+
 Group:		Applications/Publishing
 Source0:	http://ftp.gnu.org/gnu/enscript/%{name}-%{version}.tar.gz
-# Source0-md5:	c1d2a0d4b44ca30634742b299881b0e2
+# Source0-md5:	3acc242b829adacabcaf28533f049afd
 Patch0:		%{name}-mail.patch
 Patch1:		%{name}-debian.patch
 Patch2:		%{name}-info.patch
 Patch3:		%{name}-php.patch
+Patch4:		%{name}-ac.patch
 URL:		http://www.gnu.org/software/enscript/
 BuildRequires:	autoconf >= 2.61
 BuildRequires:	automake
@@ -52,6 +53,7 @@ página física (lado a lado) ou modificar as fontes do texto.
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
+%patch4 -p1
 
 %build
 %{__gettextize}
