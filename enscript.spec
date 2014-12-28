@@ -20,7 +20,7 @@ Patch4:		%{name}-ac.patch
 URL:		http://www.gnu.org/software/enscript/
 BuildRequires:	autoconf >= 2.61
 BuildRequires:	automake
-BuildRequires:	gettext-devel >= 0.17
+BuildRequires:	gettext-tools >= 0.17
 BuildRequires:	texinfo
 Obsoletes:	nenscript
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
