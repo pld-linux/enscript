@@ -17,6 +17,7 @@ Patch1:		%{name}-debian.patch
 Patch2:		%{name}-info.patch
 Patch3:		%{name}-php.patch
 Patch4:		%{name}-ac.patch
+Patch5:		%{name}-gettext.patch
 URL:		http://www.gnu.org/software/enscript/
 BuildRequires:	autoconf >= 2.61
 BuildRequires:	automake
@@ -54,6 +55,7 @@ página física (lado a lado) ou modificar as fontes do texto.
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
+%patch5 -p1
 
 %build
 %{__gettextize}

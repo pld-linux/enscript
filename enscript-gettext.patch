@@ -1,0 +1,11 @@
+--- enscript-1.6.6/configure.ac.orig	2020-12-09 18:33:27.121417552 +0100
++++ enscript-1.6.6/configure.ac	2020-12-09 18:33:36.441437459 +0100
+@@ -96,7 +96,7 @@
+ AC_SUBST(PSLEVEL)
+ 
+ dnl Internationalization.
+-AM_GNU_GETTEXT
++AM_GNU_GETTEXT([external])
+ AM_GNU_GETTEXT_VERSION([0.17])
+ 
+ dnl Path separator character.
